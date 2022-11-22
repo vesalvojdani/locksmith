@@ -46,7 +46,7 @@ let do_cfgraph_out = ref false
 let listphase = ref false
 
 (* subversion will substitute this *)
-let version = "sv-comp22"
+let version = "sv-comp23"
 
 let print_version () =
   print_endline ("LockSmith version: " ^ version); 
