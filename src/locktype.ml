@@ -3937,10 +3937,8 @@ class constraintVisitor = object
 end
 
 let handle_undef_function (name: string) : unit =
-  (* TODO: excluding sv-comp unsound cases.
-   * pthread_mutexattr is not the problem, but there is some entry_of hacks there. *)
-  if name = "scanf" || name = "__VERIFIER_nondet_int" || name = "pthread_mutexattr_init" then
-    ignore(E.warn "Possible data race due to %s" name);
+  (* TODO: scanf should write to argumens. *)
+  if name = "scanf" then ignore(E.warn "Possible data race due to scanf");
   assert (Strmap.mem name (!global_env).var_map);
   (*if not (Hashtbl.mem Cil.gccBuiltins name) then*)
     ignore(E.log "  %s\n" name);
